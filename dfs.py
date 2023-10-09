@@ -1,6 +1,18 @@
 graph={ }
 flag = True
 total_vertex = int(input("Enter no. of vertex: "))
+visited=[]
+stack=[]
+def dfs(graph,temp):#function for dfs
+    stack.append(temp)
+    visited.append(temp)
+    while stack:
+        node=stack.pop()
+        print(node,end=" ")
+        for child in graph[node]:
+            if child not in visited:
+                stack.append(child)
+                visited.append(child)
 
 for i in range(total_vertex):
     vertex = input("Enter vertex: ")
@@ -12,14 +24,5 @@ for i in range(total_vertex):
         else:
             flag = False
     flag = True
-
-visited = set() # Set to keep track of visited nodes of graph.
-
-def dfs(visited, graph, node):  #function for dfs
-    if node not in visited:
-        print (node)
-        visited.add(node)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
-print("Following is the Depth-First Search")
-dfs(visited, graph, '5')
+print(graph)
+dfs(graph,'A')
